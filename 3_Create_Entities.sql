@@ -85,8 +85,9 @@ GRANT SELECT ON application_admin.reservations TO Manager;
 
 
 
-
+GRANT INSERT ON application_admin.room TO Customer;
 GRANT SELECT ON application_admin.room_type TO Customer;
 GRANT INSERT ON application_admin.transactions TO Customer;
 GRANT INSERT ON application_admin.payment TO Customer;
 GRANT INSERT, UPDATE ON application_admin.reservations TO Customer;
+

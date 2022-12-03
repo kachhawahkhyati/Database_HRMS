@@ -41,12 +41,12 @@ begin
 end;
 /
 
-CREATE OR REPLACE FUNCTION Find_Reservation_Id(input_customer_id in number) 
+CREATE OR REPLACE FUNCTION Find_Reservation_Id(input_customer_id in number,check_in_date in date) 
 RETURN number IS  
    reservation_id number(2) := 0;  
 BEGIN  
    SELECT reservation_id into reservation_id  
-   FROM application_admin.reservations where reservations.customer_id=input_customer_id;  
+   FROM application_admin.reservations where reservations.customer_id=input_customer_id AND check_in=check_in_date;  
     RETURN reservation_id;  
 END;  
 / 

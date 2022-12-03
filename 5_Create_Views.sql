@@ -75,7 +75,7 @@ application_admin.room.room_no AS Room_Number,
 application_admin.room.availability_status AS Room_Availability
 FROM application_admin.room
 JOIN application_admin.room_type ON 
-application_admin.room.room_type_id=application_admin.room_type.room_type_id where application_admin.room.availability_status='T';
+application_admin.room.room_type_id=application_admin.room_type.room_type_id where application_admin.room.availability_status='T' order by application_admin.room.room_no;
 
 
 CREATE VIEW BOOKED_ROOMS AS 
@@ -108,9 +108,6 @@ GRANT SELECT ON application_admin.BOOKED_ROOMS TO Manager;
 GRANT SELECT,UPDATE ON application_admin.customer_view TO Customer;
 GRANT SELECT ON application_admin.Hotel_View_FOR_CUSTOMERS TO Customer;
 GRANT SELECT ON application_admin.search_view TO Customer;
-
-
-
 
 
 

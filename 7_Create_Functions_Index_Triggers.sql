@@ -1,4 +1,5 @@
 --Drop FUNCTIONS if exists
+set SERVEROUTPUT on;
 BEGIN
     EXECUTE IMMEDIATE 'DROP INDEX customer_name_index';
 EXCEPTION
@@ -96,3 +97,4 @@ GRANT EXECUTE on total_Customers to Manager;
 GRANT EXECUTE on Total_Rooms_Available to Manager;
 GRANT EXECUTE on is_room_Available to Manager;
 GRANT EXECUTE on display_PaymentDetails to Manager;
+
