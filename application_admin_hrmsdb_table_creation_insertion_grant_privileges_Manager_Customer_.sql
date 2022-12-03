@@ -26,28 +26,28 @@ insert into customer values(default,1,'Shivani Singh','shivanisingh@gmail.com','
 create table room_type(
 room_type_id NUMBER GENERATED ALWAYS as IDENTITY(START with 1 INCREMENT by 1) primary key,
 meal_plan varchar(40) not null,
-price decimal(10,2) not null,
+price decimal(20,2) not null,
 room_type_description varchar(20) unique not null
 );
 select * from room_type;
 desc room_type;
-insert into room_type values(default,'Breakfast,Lunch,Dinner',50000.0,'Standard');
-insert into room_type values(default,'Breakfast,Lunch,Dinner',35000.0,'Deluxe');
-insert into room_type values(default,'Breakfast,Lunch,Dinner',100000.0,'Suite');
+insert into room_type values(default,'Breakfast,Lunch,Dinner',3500.0,'Standard');
+insert into room_type values(default,'Breakfast,Lunch,Dinner',5000.0,'Deluxe');
+insert into room_type values(default,'Breakfast,Lunch,Dinner',10000.0,'Suite');
 
 create table reservations(
 reservation_id NUMBER GENERATED ALWAYS as IDENTITY(START with 1 INCREMENT by 1) primary key,
 customer_id number references customer(customer_id) not null,
-no_of_days varchar(20) not null,
+no_of_days number not null,
 check_in date not null,
 check_out date not null
 );
 select * from reservations;
 desc reservations;
 
-insert into reservations values(default,1,'3 days',TO_DATE('2022/12/16 12:00:00', 'yyyy/mm/dd hh:mi:ss'),TO_DATE('2022/12/18 12:00:00', 'yyyy/mm/dd hh:mi:ss'));
-insert into reservations values(default,4,'4 days',TO_DATE('2022/10/10 12:00:00', 'yyyy/mm/dd hh:mi:ss'),TO_DATE('2022/10/14 12:00:00', 'yyyy/mm/dd hh:mi:ss'));
-insert into reservations values(default,2,'7 days',TO_DATE('2022/04/12 12:00:00', 'yyyy/mm/dd hh:mi:ss'),TO_DATE('2022/04/16 12:00:00', 'yyyy/mm/dd hh:mi:ss'));
+insert into reservations values(default,1,3,TO_DATE('2022/12/16 12:00:00', 'yyyy/mm/dd hh:mi:ss'),TO_DATE('2022/12/18 12:00:00', 'yyyy/mm/dd hh:mi:ss'));
+insert into reservations values(default,2,7,TO_DATE('2022/04/12 12:00:00', 'yyyy/mm/dd hh:mi:ss'),TO_DATE('2022/04/16 12:00:00', 'yyyy/mm/dd hh:mi:ss'));
+insert into reservations values(default,4,4,TO_DATE('2022/10/10 12:00:00', 'yyyy/mm/dd hh:mi:ss'),TO_DATE('2022/10/14 12:00:00', 'yyyy/mm/dd hh:mi:ss'));
 
 create table room(
 room_id NUMBER GENERATED ALWAYS as IDENTITY(START with 1 INCREMENT by 1) primary key,
@@ -59,12 +59,12 @@ reservation_id number references reservations(reservation_id)
 select * from room;
 desc room;
 
-insert into room values(default,201,2,'T',1);
-insert into room values(default,316,3,'T',3);
-insert into room values(default,411,1,'T',2);
-insert into room values(default,202,2,'F','');
-insert into room values(default,203,3,'F','');
-insert into room values(default,310,1,'F','');
+insert into room values(default,201,2,'F',1);
+insert into room values(default,411,1,'F',2);
+insert into room values(default,316,3,'F',3);
+insert into room values(default,202,2,'T','');
+insert into room values(default,203,3,'T','');
+insert into room values(default,310,1,'T','');
 
 
 
@@ -76,9 +76,11 @@ payment_method varchar(20) unique not null
 );
 select * from payment;
 desc payment;
+
 insert into payment values(default,1,TO_DATE('2022/08/13 10:00:00', 'yyyy/mm/dd hh:mi:ss'),'Card');
-insert into payment values(default,4,TO_DATE('2022/10/03 10:00:00', 'yyyy/mm/dd hh:mi:ss'),'Venmo');
 insert into payment values(default,2,TO_DATE('2022/03/18 10:00:00', 'yyyy/mm/dd hh:mi:ss'),'Apple Pay');
+insert into payment values(default,4,TO_DATE('2022/10/03 10:00:00', 'yyyy/mm/dd hh:mi:ss'),'Venmo');
+
 
 create table transactions(
 transaction_id NUMBER GENERATED ALWAYS as IDENTITY(START with 1 INCREMENT by 1) primary key,
@@ -91,6 +93,7 @@ payment_id number references payment(payment_id) not null
 select * from transactions;
 desc transactions;
 
-insert into transactions values(default,TO_DATE('2022/08/13 10:10:00', 'yyyy/mm/dd hh:mi:ss'),'Jeff',35045.99,1,1);
-insert into transactions values(default,TO_DATE('2022/10/03 11:30:00', 'yyyy/mm/dd hh:mi:ss'),'Shivani',50045.99,2,2);
-insert into transactions values(default,TO_DATE('2022/03/18 12:45:00', 'yyyy/mm/dd hh:mi:ss'),'Julia',100439.99,3,3);
+
+insert into transactions values(default,TO_DATE('2022/08/13 10:10:00', 'yyyy/mm/dd hh:mi:ss'),'Shweta Bulchandani',15000,1,1);
+insert into transactions values(default,TO_DATE('2022/03/18 12:45:00', 'yyyy/mm/dd hh:mi:ss'),'Julia',24500,2,2);
+insert into transactions values(default,TO_DATE('2022/10/03 11:30:00', 'yyyy/mm/dd hh:mi:ss'),'Farheen Zubair',40000,3,3);
