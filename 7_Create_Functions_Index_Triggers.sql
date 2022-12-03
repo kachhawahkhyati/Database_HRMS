@@ -57,7 +57,7 @@ EXCEPTION
 END; 
 /
 
---EXECUTE display_PaymentDetails(1); 
+
 
     
 
@@ -66,13 +66,12 @@ CREATE OR REPLACE PACKAGE hotel_mgmt AS
       RETURN NUMBER; 
    FUNCTION Total_Rooms_Available
       RETURN NUMBER; 
-   function get_room_Type(input_room_no number)
-   return VARCHAR;
    function is_room_Available(input_room_no number)
    return VARCHAR;
    PROCEDURE display_PaymentDetails(input_customer_id NUMBER);
 END hotel_mgmt; 
 /
+
     
 
 
@@ -83,12 +82,17 @@ create index customer_name_index on customer(customer_name);
 --select total_Customers from dual;
 --select * from customer;
 
---select Total_Rooms_Available from dual;
+
 --select * from room;
 
---select is_room_Available(310) from dual;
+
 --select * from room;
 
 --SELECT owner,object_name FROM all_objects WHERE object_type = 'FUNCTION' AND owner='APPLICATION_ADMIN';
 
 --SELECT owner,object_name FROM all_objects WHERE object_type = 'PROCEDURE' AND owner='APPLICATION_ADMIN';
+
+GRANT EXECUTE on total_Customers to Manager;
+GRANT EXECUTE on Total_Rooms_Available to Manager;
+GRANT EXECUTE on is_room_Available to Manager;
+GRANT EXECUTE on display_PaymentDetails to Manager;
